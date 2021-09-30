@@ -22,8 +22,8 @@ let planets = document.getElementById("planets");
 let sunsTable = document.getElementById("sunsTable");
 let planetsTable = document.getElementById("planetsTable");
 
-let planet1 = new Planet("Merkurius", 0.39, 0.06, 0.39, 0.24, 58.64);
-let planet2 = new Planet("Venus", 0.95, 0.82, 0.72, 0.62, 243.02);
+let planet1 = new Planet("Merkurius", 0.39, 0.06, 0.39, 0.24, 0.161);
+let planet2 = new Planet("Venus", 0.95, 0.82, 0.72, 0.62, 0.666);
 let planet3 = new Planet("Maa", 1, 1, 1, 1, 0.997);
 let planet4 = new Planet("Mars", 0.53, 0.11, 1.52, 1.88, 1.03);
 let planet5 = new Planet("Jupiter", 11.21, 317.8, 5.20, 11.86, 0.41);
@@ -52,9 +52,9 @@ function PrintPlanets (planeetat){
     planetsTable.innerHTML = "";
     for (let i = 0; i < j ; i++){
         planetsTable.innerHTML += "<tr>";
-        planetsTable.innerHTML += "<th>Nimi: " + planeetat[i].name + "</th>";
-        planetsTable.innerHTML += "</tr><th>tiedot maapalloon verrattuna:</th><tr>"
-        planetsTable.innerHTML += "<td>Halkaisija: " + planeetat[i].diameter + "</td>";
+        planetsTable.innerHTML += "<th>Nimi: " + planeetat[i].name + "</th></tr>";
+        planetsTable.innerHTML += "<th>tiedot maapalloon verrattuna:</th>"
+        planetsTable.innerHTML += "<tr><td>Halkaisija: " + planeetat[i].diameter + "</td>";
         planetsTable.innerHTML += "<td>Massa: " + planeetat[i].mass + "</td>";
         planetsTable.innerHTML += "<td>Etäisyys aurinkoon: " + planeetat[i].distanceToSun + "</td>";
         planetsTable.innerHTML += "<td>Vuoden pituus: " + planeetat[i].yearLenght + "</td>";
@@ -75,7 +75,7 @@ function AddPlanet (){
     console.log(planet);
     planeetat.push(planet);
     j+=1;
-    PrintPlanets();  
+    PrintPlanets(planeetat);  
 }
 
 function ParseValues (){
@@ -94,18 +94,26 @@ function ParseValues (){
 
 function PrintValuesMin(){
     let printMinValues = ParseValues();
+    let newPlaneetatMax = new Array ();
     planetsTable.innerHTML = "";
     for (let i = 0; i < j ; i++){
-        if (planeetat[i].diameter > printMinValues[0]&&planeetat[i].mass > printMinValues[1]){
-            planeetat.splice(i, 1);
-            j-=1;
+        if (planeetat[i].diameter > printMinValues[0]&&planeetat[i].mass > printMinValues[1]&&planeetat[i].distanceToSun > printMinValues[2]&&planeetat[i].yearLenght > printMinValues[3]&&planeetat[i].dayLenght > printMinValues[4]){
+            newPlaneetatMax.push(planeetat[i]);
         }
     }
-    let planeetatSlised = planeetat;
-    console.log(planeetatSlised);
-    PrintPlanets(planeetatSlised);
+    console.log(newPlaneetatMax);
+    PrintPlanets(newPlaneetatMax);
 }
 
 function PrintValuesMax(){
-
+    let printMaxValues = ParseValues();
+    let newPlaneetatMin = new Array ();
+    planetsTable.innerHTML = "";
+    for (let i = 0; i < j ; i++){
+        if (planeetat[i].diameter < printMaxValues[0]&&planeetat[i].mass < printMaxValues[1]&&planeetat[i].distanceToSun < printMaxValues[2]&&planeetat[i].yearLenght < printMaxValues[3]&&planeetat[i].dayLenght < printMaxValues[4]){
+            newPlaneetatMin.push(planeetat[i]);
+        }
+    }
+    console.log(newPlaneetatMin);
+    PrintPlanets(newPlaneetatMin);
 }
