@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planeetat</title>
+</head>
+<body>
+
+<div id="startBlock">
+    <h1>Tervetuloa aurinkokuntaan</h1>
+    <button onclick="ButtonIsPressed()">Aloita</button>
+</div>
+<div id="header2">
+    <h2>Aurinkokunnan sisältö:</h2>
+</div>
+
+<div id="suns">
+    <h2>Auringot:</h2>
+        <table id="sunsTanle"></table>  
+</div>
+
+<div id="planets">
+    <h2>Planeetat:</h2>
+        <button onclick="AddPlanet()">Lisää planeetta</button>
+        <button onclick="PrintValuesMin()">Tulosta kun arvot on vähintään</button>
+        <button onclick="PrintValuesMax()">Tulosta kun arvot on enintään</button>
+        <div id="textInputs">
+            <input type="text" id="planetName" placeholder="Planet name">
+            <input type="text" id="planetDiameter" placeholder="Planet diameter">                   
+            <input type="text" id="planetMass" placeholder="Planet mass">
+            <input type="text" id="planetDistanceToSun" placeholder="Planet distance to sun">
+            <input type="text" id="planetYearLenght" placeholder="Planet year lenght">
+            <input type="text" id="planetDayLenght" placeholder="Planet day lenght">
+        </div>
+        <table id="planetsTable"></table>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
